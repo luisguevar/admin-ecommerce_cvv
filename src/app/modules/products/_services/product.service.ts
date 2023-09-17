@@ -8,7 +8,7 @@ import { finalize } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class UsersService {
+export class ProductService {
 
   isLoading$: Observable<boolean>;
   isLoadingSubject: BehaviorSubject<boolean>;
@@ -21,45 +21,66 @@ export class UsersService {
     this.isLoading$ = this.isLoadingSubject.asObservable();
   }
 
-  allUsers(page = 1, state = '', search = '') {
+  createProduct(data: any) {
     this.isLoadingSubject.next(true);
     let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authservice.token });
-    let LINK = "";
-    if (state) {
-      LINK = LINK + "&state=" + state;
-    }
-    if (search) {
-      LINK = LINK + "&search=" + search;
-    }
-
-    let URL = URL_SERVICIOS + "/users/admin/all?page=" + page + LINK;
-    return this.http.get(URL, { headers: headers }).pipe(
-      finalize(() => this.isLoadingSubject.next(false))
-    );
-  }
-
-  register(data: any) {
-    this.isLoadingSubject.next(true);
-    let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authservice.token });
-    let URL = URL_SERVICIOS + "/users/admin/register";
+    let URL = URL_SERVICIOS + "/products/add";
     return this.http.post(URL, data, { headers: headers }).pipe(
       finalize(() => this.isLoadingSubject.next(false))
     );
   }
 
-  update(user_id, data) {
+  getCategorias() {
     this.isLoadingSubject.next(true);
     let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authservice.token });
-    let URL = URL_SERVICIOS + "/users/admin/update/" + user_id;
-    return this.http.put(URL, data, { headers: headers }).pipe(
+    let URL = URL_SERVICIOS + "/products/getCategorias";
+    return this.http.get(URL, { headers: headers }).pipe(
       finalize(() => this.isLoadingSubject.next(false))
     );
   }
 
-  deleteUser(user_id) {
+  allProducts(page = 1, LINK = '') {
     this.isLoadingSubject.next(true);
     let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authservice.token });
-    let URL = URL_SERVICIOS + "/users/admin/delete/" + user_id;
+    let URL = URL_SERVICIOS + "/products/all?page=" + page + LINK;
+    return this.http.get(URL, { headers: headers }).pipe(
+      finalize(() => this.isLoadingSubject.next(false))
+    );
+  }
+
+  showProduct(product_id) {
+    this.isLoadingSubject.next(true);
+    let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authservice.token });
+    let URL = URL_SERVICIOS + "/products/show_product/" + product_id;
+    return this.http.get(URL, { headers: headers }).pipe(
+      finalize(() => this.isLoadingSubject.next(false))
+    );
+  }
+
+  updateProduct(product_id: string, data: any) {
+    this.isLoadingSubject.next(true);
+    let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authservice.token });
+    let URL = URL_SERVICIOS + "/products/update/" + product_id;
+    return this.http.post(URL, data, { headers: headers }).pipe(
+      finalize(() => this.isLoadingSubject.next(false))
+    );
+  }
+
+  // GALERIA DE IMAGENES DEL PRODUCTO
+
+  addImagenProduct(data: any) {
+    this.isLoadingSubject.next(true);
+    let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authservice.token });
+    let URL = URL_SERVICIOS + "/products/imgs/add";
+    return this.http.post(URL, data, { headers: headers }).pipe(
+      finalize(() => this.isLoadingSubject.next(false))
+    );
+  }
+
+  deleteImagenProduct(imagen_id: any) {
+    this.isLoadingSubject.next(true);
+    let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authservice.token });
+    let URL = URL_SERVICIOS + "/products/imgs/delete/" + imagen_id;
     return this.http.delete(URL, { headers: headers }).pipe(
       finalize(() => this.isLoadingSubject.next(false))
     );

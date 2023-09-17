@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LayoutComponent } from './_layout/layout.component';
+import { ProductsModule } from '../modules/products/products.module';
 
 const routes: Routes = [
   {
@@ -65,6 +66,21 @@ const routes: Routes = [
         loadChildren: () =>
           import('../modules/users/users.module').then(
             (m) => m.UsersModule
+          ),
+      },
+
+      {
+        path: 'categorias',
+        loadChildren: () =>
+          import('../modules/categories/categories.module').then(
+            (m) => m.CategoriesModule
+          ),
+      },
+      {
+        path: 'products',
+        loadChildren: () =>
+          import('../modules/products/products.module').then(
+            (m) => m.ProductsModule
           ),
       },
       {

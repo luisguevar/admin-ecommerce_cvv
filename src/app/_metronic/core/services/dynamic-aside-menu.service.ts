@@ -19,24 +19,13 @@ export class DynamicAsideMenuService {
     this.loadMenu();
   }
 
-  // Here you able to load your menu from server/data-base/localStorage
-  // Default => from DynamicAsideMenuConfig
+  
   private loadMenu() {
     // this.setMenu(DynamicAsideMenuConfig);
     if(this.authservice.user.role.name == 'ADMINISTRADOR GENERAL'){
       this.setMenu(AsideMenuAdminGeneral);
     } 
-    // else if(this.authservice.user.role.name == 'ASESOR'){
-    //   this.setMenu(AsideMenuAsesor);
-    // } 
-    // else if(this.authservice.user.role.name == 'COMERCIAL'){
-    //   this.setMenu(AsideMenuComercial);
-    // } else if(this.authservice.user.role.name == 'MARKETING'){
-    //   this.setMenu(AsideMenuMarketing);
-    // } else if(this.authservice.user.role.name == 'CONSULTORIA'){
-    //   this.setMenu(AsideMenuConsultoria);
-    // } else if(this.authservice.user.role.name == 'GENERAL'){
-    //   this.setMenu(AsideMenuGeneral);
+    
     else {
       this.setMenu([]);
     }
