@@ -83,6 +83,15 @@ const routes: Routes = [
             (m) => m.ProductsModule
           ),
       },
+
+      {
+        path: 'sliders',
+        loadChildren: () =>
+          import('../modules/sliders/sliders.module').then(
+            (m) => m.SlidersModule
+          ),
+      },
+
       {
         path: '',
         redirectTo: '/dashboard',
