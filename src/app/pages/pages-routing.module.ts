@@ -85,6 +85,14 @@ const routes: Routes = [
       },
 
       {
+        path: 'cotizaciones',
+        loadChildren: () =>
+          import('../modules/cotizaciones/cotizaciones.module').then(
+            (m) => m.CotizacionesModule
+          ),
+      },
+
+      {
         path: 'sliders',
         loadChildren: () =>
           import('../modules/sliders/sliders.module').then(

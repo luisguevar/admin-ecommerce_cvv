@@ -41,22 +41,26 @@ export class UsersListComponent implements OnInit {
   }
 
 
-  loadPage(index) {
-    this.allUsers(index);
+  loadPage(page: number) {
+    this.allUsers(page);
   }
+
 
   allUsers(page = 1) {
     this._userService.allUsers(page, this.state, this.search).subscribe(
       (resp: any) => {
         console.log(resp);
-
         this.users = resp.users.data;
         this.totalPages = resp.total;
         this.currentPage = page;
-
         console.log('usuarios: ', this.users);
-      });
+      },
+      (error) => {
+        console.error('Error al cargar usuarios:', error);
+      }
+    );
   }
+
 
   addUser() {
     const modalRef = this._modelService.open(AddUsersComponent,

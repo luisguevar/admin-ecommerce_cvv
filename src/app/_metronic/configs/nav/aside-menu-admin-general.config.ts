@@ -64,6 +64,31 @@ export const AsideMenuAdminGeneral = {
         }
       ]
     },
+
+    { section: 'Administración' },
+    {
+      title: 'Cotizaciones',
+      root: true,
+      name: "cotizaciones",
+      bullet: 'dot',
+      icon: 'flaticon2-user-outline-symbol',
+      svg: './assets/media/svg/icons/Layout/Layout-left-panel-2.svg',
+      page: '/cotizaciones',
+      submenu: [
+        {
+          title: 'Crear Cotización',
+          page: '/cotizaciones/add-cotizacion'
+        },
+
+        {
+          title: 'Listar Cotizaciones',
+          page: '/cotizaciones/list-cotizaciones'
+        }
+      ]
+    },
+
+
+
     { section: 'VISTA PRINCIPAL' },
     {
       title: 'Sliders',

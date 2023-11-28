@@ -18,6 +18,8 @@ import { SplashScreenModule } from './_metronic/partials/layout/splash-screen/sp
 import { FakeAPIService } from './_fake/fake-api.service';
 import { NoticyAlertComponent } from './componets/notifications/noticy-alert/noticy-alert.component';
 import { ToastNotificationsModule } from 'ngx-toast-notifications';
+import { ListCotizacionesComponent } from './modules/cotizaciones/list-cotizaciones/list-cotizaciones.component';
+import { CotizacionesComponent } from './modules/cotizaciones/cotizaciones.component';
 // #fake-end#
 
 function appInitializer(authService: AuthService) {
